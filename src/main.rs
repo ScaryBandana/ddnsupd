@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use crate::error::AppError;
+use crate::{config::ConfigFile, error::AppError};
 
+mod config;
 mod error;
 
 #[tokio::main]
@@ -24,6 +25,15 @@ async fn main() -> Result<(), AppError> {
     let git_branch = env!("GIT_BRANCH");
 
     println!("{pkg_name} {pkg_version}-{git_commit}({git_branch})");
+
+    // TODO: Allow specifying the configuration file path via command-line arguments or environment variables.
+    let config = ConfigFile::load_or_create_if_missing("config.json")?;
+
+    println!("Loaded configuration with {} entries", config.entries.len());
+    for entry in config.entries {
+        // TODO: Remove after testing, to prevent leaking sensitive information (e.g., API keys, secrets).
+        println!("Entry: {:?}", entry);
+    }
 
     Ok(())
 }
