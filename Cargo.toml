@@ -4,3 +4,5 @@ version = "2026.10.1"
 edition = "2024"
 
 [dependencies]
+thiserror = "2.0.21"
+tokio = { version = "1.54.1", features = ["rt-multi-thread", "macros", "net"] }

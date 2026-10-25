@@ -12,11 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-fn main() {
+use crate::error::AppError;
+
+mod error;
+
+#[tokio::main]
+async fn main() -> Result<(), AppError> {
     let pkg_name = env!("CARGO_PKG_NAME");
     let pkg_version = env!("CARGO_PKG_VERSION");
     let git_commit = env!("GIT_COMMIT");
     let git_branch = env!("GIT_BRANCH");
 
     println!("{pkg_name} {pkg_version}-{git_commit}({git_branch})");
+
+    Ok(())
 }
