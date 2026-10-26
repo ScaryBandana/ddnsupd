@@ -16,7 +16,7 @@ use std::path::{Path, PathBuf};
 
 use serde::{Deserialize, Serialize};
 
-use crate::error::AppError;
+use crate::utils::error::AppError;
 
 #[derive(Serialize, Deserialize, Default)]
 pub struct AppConfig {

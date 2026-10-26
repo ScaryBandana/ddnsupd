@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use crate::{config::ConfigFile, error::AppError};
+use crate::utils::{config::ConfigFile, error::AppError};
 
-mod config;
-mod error;
+mod utils;
 
 #[tokio::main]
 async fn main() -> Result<(), AppError> {
