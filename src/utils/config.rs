@@ -23,10 +23,16 @@ pub struct AppConfig {
     pub entries: Vec<DdnsEntryConfig>,
 }
 
-// Placeholder for provider-specific DDNS entry configurations (e.g., DynDNS2, IONOS).
 #[derive(Serialize, Deserialize, Debug)]
-#[serde(tag = "provider")]
-pub enum DdnsEntryConfig {}
+pub struct DdnsEntryConfig {
+    pub name: String,
+    #[serde(flatten)]
+    pub provider: DdnsEntryProviderConfig,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "lowercase")]
+pub enum DdnsEntryProviderConfig {}
 
 pub struct ConfigFile {}
 
